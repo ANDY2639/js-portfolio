@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
+  devtool: 'source-map',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,7 +14,6 @@ module.exports = {
     assetModuleFilename: 'assets/images/[hash][ext][query]',
     clean: true
   },
-  watch: true,
   resolve: {
     extensions: ['.js'],
     alias: {
@@ -77,5 +77,10 @@ module.exports = {
       ]
     }),
     new Dotenv()
-  ]
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    historyApiFallback: true,
+  }
 };
